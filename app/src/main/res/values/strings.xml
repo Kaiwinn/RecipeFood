@@ -1,5 +1,22 @@
 <resources>
-    <string name="app_name">RecipeFoodApp</string>
+    <string name="app_name">RecipeFood</string>
     <string name="api_key">bb5aee9c10574a2f8c84059a2482bff3</string>
+
+    <string-array name="tags">
+        <item>main course</item>
+        <item>side dish</item>
+        <item>dessert</item>
+        <item>appetizer</item>
+        <item>salad</item>
+        <item>bread</item>
+        <item>breakfast</item>
+        <item>soup</item>
+        <item>beverage</item>
+        <item>sauce</item>
+        <item>marinade</item>
+        <item>fingerfood</item>
+        <item>snack</item>
+        <item>drink</item>
+    </string-array>
 
 </resources>

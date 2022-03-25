@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.recipefoodapp.Adapters.RandomRecipeAdapter;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     RequestManager manager;
     RandomRecipeAdapter randomRecipeAdapter;
     RecyclerView recyclerView;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
         // initialize
         dialog = new ProgressDialog(this);
         dialog.setTitle("Loading...");
+
+        spinner = findViewById(R.id.spinner_tags);
+        ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.tags,
+                R.layout.spinner_text
+        );
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_inner_text);
+        spinner.setAdapter(arrayAdapter);
 
         manager = new RequestManager(this);
         manager.getRandomRecipes(randomRecipeResponseListeners);

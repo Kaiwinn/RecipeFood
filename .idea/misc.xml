@@ -8,6 +8,8 @@
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/list_random_recipe.xml" value="0.4" />
+        <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/spinner_inner_text.xml" value="0.4" />
+        <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/spinner_text.xml" value="0.25" />
       </map>
     </option>
   </component>
