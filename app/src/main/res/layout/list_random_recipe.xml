@@ -44,8 +44,8 @@
                 android:layout_weight="1">
                 <ImageView
                     android:src="@drawable/ic_servings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="24sp"
+                    android:layout_height="24sp"/>
                 <TextView
                     android:id="@+id/txtV_servings"
                     android:textSize="14sp"
@@ -63,8 +63,8 @@
                 android:layout_weight="1">
                 <ImageView
                     android:src="@drawable/ic_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="24sp"
+                    android:layout_height="24sp"/>
                 <TextView
                     android:id="@+id/txtV_likes"
                     android:textSize="14sp"
@@ -82,8 +82,8 @@
                 android:layout_weight="1">
                 <ImageView
                     android:src="@drawable/ic_times"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="24sp"
+                    android:layout_height="24sp"/>
                 <TextView
                     android:id="@+id/txtV_times"
                     android:textSize="14sp"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RecipeFood</string>
+    <string name="app_name">Food KW</string>
     <string name="api_key">bb5aee9c10574a2f8c84059a2482bff3</string>
 
     <string-array name="tags">
