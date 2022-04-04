@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.recipefoodapp.Adapters.RandomRecipeAdapter;
 import com.example.recipefoodapp.Listeners.RandomRecipeResponseListeners;
+import com.example.recipefoodapp.Listeners.RecipeClickListener;
 import com.example.recipefoodapp.Models.RandomRecipeApiResponse;
 
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         spinner = findViewById(R.id.spinner_tags);
+    //Create Adapter for SPINNER.
         ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.tags,
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView = findViewById(R.id.recycler_random);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
-            randomRecipeAdapter = new RandomRecipeAdapter(MainActivity.this, response.recipes);
+            randomRecipeAdapter = new RandomRecipeAdapter(MainActivity.this, response.recipes, recipeClickListener);
             recyclerView.setAdapter(randomRecipeAdapter);
         }
 
@@ -99,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    private final RecipeClickListener recipeClickListener = new RecipeClickListener() {
+        @Override
+        public void onRecipeClicked(String id) {
 
         }
     };

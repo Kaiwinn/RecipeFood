@@ -20,7 +20,7 @@
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             android:textColor="@color/orange"
             android:textSize="22sp"
             android:padding="8dp"
