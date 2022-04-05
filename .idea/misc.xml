@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
+        <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/drawable/bg_loading.xml" value="0.18802083333333333" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/drawable/ic_baseline_access_time_filled_24.xml" value="0.26614583333333336" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/drawable/ic_like.xml" value="0.26614583333333336" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/drawable/ic_servings.xml" value="0.26614583333333336" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/activity_recipe_detail.xml" value="0.25" />
+        <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/custom_dialog.xml" value="0.25" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/list_random_recipe.xml" value="0.4" />
+        <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/loading.xml" value="0.25" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/spinner_inner_text.xml" value="0.4" />
         <entry key="..\:/ANDROID/RecipeFoodApp/app/src/main/res/layout/spinner_text.xml" value="0.25" />
       </map>
