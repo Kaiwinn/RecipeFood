@@ -5,7 +5,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -107,10 +107,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    // call   Listener Click Recipe.
     private final RecipeClickListener recipeClickListener = new RecipeClickListener() {
         @Override
         public void onRecipeClicked(String id) {
-
+            startActivity(new Intent(MainActivity.this,
+                    RecipeDetailActivity.class).putExtra("id", id));
+            //
         }
     };
 }

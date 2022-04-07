@@ -3,7 +3,9 @@ package com.example.recipefoodapp;
 import android.content.Context;
 
 import com.example.recipefoodapp.Listeners.RandomRecipeResponseListeners;
+import com.example.recipefoodapp.Listeners.RecipesDetailsListener;
 import com.example.recipefoodapp.Models.RandomRecipeApiResponse;
+import com.example.recipefoodapp.Models.RecipeDetailsResponse;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public class RequestManager {
@@ -60,6 +63,10 @@ public class RequestManager {
         });
     }
 
+    public void getRecipeDetails(RecipesDetailsListener listener, int id){
+        CallRecipeDetails callRecipeDetails = retrofit.create(CallRecipeDetails.class);
+    }
+
     // create the interface for random API
     private interface CallRandomRecipes{
         @GET("recipes/random")
@@ -68,5 +75,13 @@ public class RequestManager {
                 @Query("number") String number,
                 @Query("tags")List<String> tags
                 );
+    }
+
+    private interface CallRecipeDetails{
+        @GET("recipes/{id}/information")
+        Call<RecipeDetailsResponse> callRecipeDetails(
+                @Part("id") int id,
+                @Query("apiKey") String apiKey
+        );
     }
 }
