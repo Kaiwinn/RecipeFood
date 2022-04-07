@@ -65,6 +65,30 @@ public class RequestManager {
 
     public void getRecipeDetails(RecipesDetailsListener listener, int id){
         CallRecipeDetails callRecipeDetails = retrofit.create(CallRecipeDetails.class);
+        // retrofit is load data form api to CallRecipeDetails.class
+//Call is send request Response
+        Call<RecipeDetailsResponse> call = callRecipeDetails
+                .callRecipeDetails(id, context.getString(R.string.api_key));
+
+        // enqueue is Returns true if this call has been either executed or enqueued.
+        // It is an error to execute or enqueue a call more than once.
+        call.enqueue(new Callback<RecipeDetailsResponse>() {
+            // Callback called for a reponse of HTTP.
+            @Override
+            public void onResponse(Call<RecipeDetailsResponse> call, Response<RecipeDetailsResponse> response) {
+                if(!response.isSuccessful()){
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+
+            }
+
+            @Override
+            public void onFailure(Call<RecipeDetailsResponse> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
     }
 
     // create the interface for random API
