@@ -24,7 +24,9 @@ public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeViewHo
     List<Recipe> list;
     RecipeClickListener listener;
 
-    public RandomRecipeAdapter(Context context, List<Recipe> list, RecipeClickListener listener) {
+    public RandomRecipeAdapter(
+            Context context, List<Recipe> list,
+            RecipeClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -49,7 +51,8 @@ public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeViewHo
         holder.random_list_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onRecipeClicked(String.valueOf(list.get(holder.getAdapterPosition()).id));
+                listener.onRecipeClicked(
+                        String.valueOf(list.get(holder.getAdapterPosition()).id));
             }
         });
     }

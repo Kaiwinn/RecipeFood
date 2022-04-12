@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class RequestManager {
@@ -42,7 +43,8 @@ public class RequestManager {
         // call queue
         call.enqueue(new Callback<RandomRecipeApiResponse>() {
             @Override
-            public void onResponse(Call<RandomRecipeApiResponse> call, Response<RandomRecipeApiResponse> response) {
+            public void onResponse(Call<RandomRecipeApiResponse> call,
+                                   Response<RandomRecipeApiResponse> response) {
                 //i will check for
                 // response is successful or not
                 // if NOT
@@ -67,8 +69,9 @@ public class RequestManager {
         CallRecipeDetails callRecipeDetails = retrofit.create(CallRecipeDetails.class);
         // retrofit is load data form api to CallRecipeDetails.class
 //Call is send request Response
-        Call<RecipeDetailsResponse> call = callRecipeDetails
-                .callRecipeDetails(id, context.getString(R.string.api_key));
+        Call<RecipeDetailsResponse> call =
+                callRecipeDetails.callRecipeDetails(
+                        id, context.getString(R.string.api_key));
 
         // enqueue is Returns true if this call has been either executed or enqueued.
         // It is an error to execute or enqueue a call more than once.
@@ -104,7 +107,7 @@ public class RequestManager {
     private interface CallRecipeDetails{
         @GET("recipes/{id}/information")
         Call<RecipeDetailsResponse> callRecipeDetails(
-                @Part("id") int id,
+                @Path("id") int id,
                 @Query("apiKey") String apiKey
         );
     }

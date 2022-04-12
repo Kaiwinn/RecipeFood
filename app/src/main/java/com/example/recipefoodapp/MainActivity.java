@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView = findViewById(R.id.recycler_random);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
-            randomRecipeAdapter = new RandomRecipeAdapter(MainActivity.this, response.recipes, recipeClickListener);
+            randomRecipeAdapter = new RandomRecipeAdapter(
+                    MainActivity.this, response.recipes, recipeClickListener);
             recyclerView.setAdapter(randomRecipeAdapter);
         }
 
@@ -112,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onRecipeClicked(String id) {
             startActivity(new Intent(MainActivity.this,
-                    RecipeDetailActivity.class).putExtra("id", id));
+                    RecipeDetailActivity.class)
+                    .putExtra("id", id));
             //
         }
     };
