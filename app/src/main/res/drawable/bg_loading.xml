@@ -13,8 +13,8 @@
             android:height="200dp"/>
         <gradient
             android:angle="45"
-            android:startColor="#F43274"
-            android:endColor="#E36AF8"
+            android:startColor="#5AF661"
+            android:endColor="#0166B6"
             android:type="sweep"
             android:centerColor="#FFFFFF"/>
     </shape>

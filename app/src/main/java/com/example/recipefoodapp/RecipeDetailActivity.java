@@ -66,9 +66,12 @@ public class RecipeDetailActivity extends AppCompatActivity {
             recycler_meal_ingredients.setLayoutManager(new
                     LinearLayoutManager(RecipeDetailActivity.this,
                     LinearLayoutManager.HORIZONTAL, false));
+            // setLayoutManager is set RecyclerView is horizontal or vertical !
             ingredientsAdapter = new IngredientsAdapter(
                     RecipeDetailActivity.this, response.extendedIngredients);
+            // initialization IngredientsAdapter
             recycler_meal_ingredients.setAdapter(ingredientsAdapter);
+            // set Adapter for Recycler !
         }
 
         @Override
