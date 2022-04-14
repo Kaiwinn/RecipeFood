@@ -14,8 +14,12 @@ import android.widget.Toast;
 
 import com.example.recipefoodapp.Adapters.IngredientsAdapter;
 import com.example.recipefoodapp.Listeners.RecipesDetailsListener;
+import com.example.recipefoodapp.Listeners.SimilarRecipeListener;
 import com.example.recipefoodapp.Models.RecipeDetailsResponse;
+import com.example.recipefoodapp.Models.SimilarRecipeResponse;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
@@ -39,6 +43,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         manager = new RequestManager(this);
         manager.getRecipeDetails(RecipeDetailsListener, id);
+        manager.getSimilarRecipes(similarRecipeListener, id);
         loading.setVisibility(View.VISIBLE);
     }
 
@@ -79,6 +84,19 @@ public class RecipeDetailActivity extends AppCompatActivity {
         public void didError(String message) {
             Toast.makeText(RecipeDetailActivity.this,
                     message, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final SimilarRecipeListener similarRecipeListener
+            = new SimilarRecipeListener() {
+        @Override
+        public void didFetch(List<SimilarRecipeResponse> response, String message) {
+
+        }
+
+        @Override
+        public void didError(String message) {
+
         }
     };
 }

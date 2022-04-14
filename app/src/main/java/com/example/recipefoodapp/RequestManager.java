@@ -35,7 +35,8 @@ public class RequestManager {
     // in this method,
     // we'll pass an object of this RandomRecipeResponseListeners.
 //we cn call this "getRandomRecipes" in MainActivity to get all data.
-    public void getRandomRecipes(RandomRecipeResponseListeners listeners, List<String> tags){
+    public void getRandomRecipes(RandomRecipeResponseListeners listeners,
+                                 List<String> tags){
 
 // call all RandomRecipes
         CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
@@ -80,7 +81,8 @@ public class RequestManager {
         call.enqueue(new Callback<RecipeDetailsResponse>() {
             // Callback called for a reponse of HTTP.
             @Override
-            public void onResponse(Call<RecipeDetailsResponse> call, Response<RecipeDetailsResponse> response) {
+            public void onResponse(Call<RecipeDetailsResponse> call,
+                                   Response<RecipeDetailsResponse> response) {
                 if(!response.isSuccessful()){
                     listener.didError(response.message());
                     return;
@@ -97,7 +99,27 @@ public class RequestManager {
     }
 
     public void getSimilarRecipes(SimilarRecipeListener listener, int id){
+        CallSimilarRecipes callSimilarRecipes =
+                retrofit.create(CallSimilarRecipes.class);
+        Call<List<SimilarRecipeResponse>>
+                call = callSimilarRecipes.callSimilarRecipes(
+                        id,"5", context.getString(R.string.api_key));
+        call.enqueue(new Callback<List<SimilarRecipeResponse>>() {
+            @Override
+            public void onResponse(Call<List<SimilarRecipeResponse>> call,
+                                   Response<List<SimilarRecipeResponse>> response) {
+                if(!response.isSuccessful()){
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+            }
 
+            @Override
+            public void onFailure(Call<List<SimilarRecipeResponse>> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
     }
 
     // create the interface for random API
