@@ -4,8 +4,10 @@ import android.content.Context;
 
 import com.example.recipefoodapp.Listeners.RandomRecipeResponseListeners;
 import com.example.recipefoodapp.Listeners.RecipesDetailsListener;
+import com.example.recipefoodapp.Listeners.SimilarRecipeListener;
 import com.example.recipefoodapp.Models.RandomRecipeApiResponse;
 import com.example.recipefoodapp.Models.RecipeDetailsResponse;
+import com.example.recipefoodapp.Models.SimilarRecipeResponse;
 
 import java.util.List;
 
@@ -94,6 +96,10 @@ public class RequestManager {
         });
     }
 
+    public void getSimilarRecipes(SimilarRecipeListener listener, int id){
+
+    }
+
     // create the interface for random API
     private interface CallRandomRecipes{
         @GET("recipes/random")
@@ -109,6 +115,16 @@ public class RequestManager {
         Call<RecipeDetailsResponse> callRecipeDetails(
                 @Path("id") int id,
                 @Query("apiKey") String apiKey
+        );
+    }
+
+    private interface CallSimilarRecipes{
+        @GET("recipes/{id}/similar")
+        Call<List<SimilarRecipeResponse>> callSimilarRecipes(
+                @Path("id") int id,
+                @Query("number") String number,
+                @Query("apiKey") String apiKey
+
         );
     }
 }
