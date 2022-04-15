@@ -59,7 +59,8 @@ public class SimilarRecipeAdapter extends RecyclerView.Adapter<SimilarRecipeView
             @Override
             public void onClick(View v) {
                 listener.onRecipeClicked(
-                        String.valueOf(list.get(holder.getAdapterPosition()).id));
+                        String.valueOf(list.get(holder.getAdapterPosition()).id)
+                );
             }
         });
     }

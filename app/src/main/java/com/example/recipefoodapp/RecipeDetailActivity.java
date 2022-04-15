@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recipefoodapp.Adapters.IngredientsAdapter;
+import com.example.recipefoodapp.Adapters.SimilarRecipeAdapter;
+import com.example.recipefoodapp.Listeners.RecipeClickListener;
 import com.example.recipefoodapp.Listeners.RecipesDetailsListener;
 import com.example.recipefoodapp.Listeners.SimilarRecipeListener;
 import com.example.recipefoodapp.Models.RecipeDetailsResponse;
@@ -27,6 +30,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     ImageView imgV_meal_image;
     RecyclerView recycler_meal_ingredients, recycler_meal_similar;
     IngredientsAdapter ingredientsAdapter;
+    SimilarRecipeAdapter similarRecipeAdapter;
     int id;
     LinearLayout loading;
 
@@ -91,12 +95,33 @@ public class RecipeDetailActivity extends AppCompatActivity {
             = new SimilarRecipeListener() {
         @Override
         public void didFetch(List<SimilarRecipeResponse> response, String message) {
+            //set HashFixedSize;
+            recycler_meal_similar.setHasFixedSize(true);
+            // use setLayoutManager to convert file.XML to java !
+            recycler_meal_similar.setLayoutManager(
+                    new LinearLayoutManager(RecipeDetailActivity.this,
+                            RecyclerView.HORIZONTAL, false));
 
+            // crete Adapter similarRecipe
+            similarRecipeAdapter = new SimilarRecipeAdapter(
+                    RecipeDetailActivity.this, response, recipeClickListener);
+            // set Adapter for recycler_meal_similar.
+            recycler_meal_similar.setAdapter(similarRecipeAdapter);
         }
 
         @Override
         public void didError(String message) {
+            Toast.makeText(RecipeDetailActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
+    };
 
+    private final RecipeClickListener recipeClickListener =
+            new RecipeClickListener() {
+        @Override
+        public void onRecipeClicked(String id) {
+            startActivity(new Intent(RecipeDetailActivity.this,
+                    RecipeDetailActivity.class)
+                    .putExtra("id", id));
         }
     };
 }

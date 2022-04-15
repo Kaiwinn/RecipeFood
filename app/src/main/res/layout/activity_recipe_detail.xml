@@ -73,6 +73,15 @@
                     android:textSize="14sp"
                     android:textStyle="normal"
                     tools:ignore="HardcodedText" />
+                <TextView
+                    android:text="Similar Recipes"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#390D87"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_meal_similar"
