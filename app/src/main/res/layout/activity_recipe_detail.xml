@@ -11,7 +11,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FB835D"
+        android:background="#FD8058"
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
@@ -112,6 +112,7 @@
         android:id="@+id/loading"
         android:gravity="center"
         android:layout_centerInParent="true"
+        android:background="#70FFFFFF"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -122,9 +123,9 @@
             android:layout_height="100dp"/>
         <TextView
             android:gravity="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#090909"
             android:textSize="30sp"
-            android:text="Loading detals..."
+            android:text="  Loading ..."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

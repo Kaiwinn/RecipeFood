@@ -2,9 +2,11 @@ package com.example.recipefoodapp;
 
 import android.content.Context;
 
+import com.example.recipefoodapp.Listeners.InstructionsListener;
 import com.example.recipefoodapp.Listeners.RandomRecipeResponseListeners;
 import com.example.recipefoodapp.Listeners.RecipesDetailsListener;
 import com.example.recipefoodapp.Listeners.SimilarRecipeListener;
+import com.example.recipefoodapp.Models.InstructionsResponse;
 import com.example.recipefoodapp.Models.RandomRecipeApiResponse;
 import com.example.recipefoodapp.Models.RecipeDetailsResponse;
 import com.example.recipefoodapp.Models.SimilarRecipeResponse;
@@ -122,6 +124,30 @@ public class RequestManager {
         });
     }
 
+    public void getInstructionsRecipe(InstructionsListener listener, int id){
+        // query to class CallInstructions
+        CallInstructions callInstructions = retrofit.create(CallInstructions.class);
+        Call<InstructionsResponse> call =
+                callInstructions.caInstructions(id, context.getString(R.string.api_key));
+        call.enqueue(new Callback<InstructionsResponse>() {
+            @Override
+            public void onResponse(Call<InstructionsResponse> call, Response<InstructionsResponse> response) {
+                if(!response.isSuccessful()){
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(),response.message());
+            }
+
+            @Override
+            public void onFailure(Call<InstructionsResponse> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
+
+
     // create the interface for random API
     private interface CallRandomRecipes{
         @GET("recipes/random")
@@ -149,4 +175,14 @@ public class RequestManager {
 
         );
     }
+
+    private interface CallInstructions{
+        @GET("recipes/{id}/analyzedInstructions")
+        Call<InstructionsResponse> caInstructions(
+                @Path("id") int id,
+                @Query("apiKey") String apiKey
+        );
+
+    }
+
 }
