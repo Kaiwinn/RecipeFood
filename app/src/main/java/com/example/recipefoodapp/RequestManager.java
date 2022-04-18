@@ -127,11 +127,13 @@ public class RequestManager {
     public void getInstructionsRecipe(InstructionsListener listener, int id){
         // query to class CallInstructions
         CallInstructions callInstructions = retrofit.create(CallInstructions.class);
-        Call<InstructionsResponse> call =
-                callInstructions.caInstructions(id, context.getString(R.string.api_key));
-        call.enqueue(new Callback<InstructionsResponse>() {
+
+        Call<List<InstructionsResponse>> call
+                = callInstructions.caInstructions(id, context.getString(R.string.api_key));
+        call.enqueue(new Callback<List<InstructionsResponse>>() {
             @Override
-            public void onResponse(Call<InstructionsResponse> call, Response<InstructionsResponse> response) {
+            public void onResponse(Call<List<InstructionsResponse>> call,
+                                   Response<List<InstructionsResponse>> response) {
                 if(!response.isSuccessful()){
                     listener.didError(response.message());
                     return;
@@ -140,11 +142,12 @@ public class RequestManager {
             }
 
             @Override
-            public void onFailure(Call<InstructionsResponse> call, Throwable t) {
+            public void onFailure(Call<List<InstructionsResponse>> call, Throwable t) {
                 listener.didError(t.getMessage());
             }
         });
     }
+
 
 
 
@@ -178,7 +181,7 @@ public class RequestManager {
 
     private interface CallInstructions{
         @GET("recipes/{id}/analyzedInstructions")
-        Call<InstructionsResponse> caInstructions(
+        Call<List<InstructionsResponse>> caInstructions(
                 @Path("id") int id,
                 @Query("apiKey") String apiKey
         );

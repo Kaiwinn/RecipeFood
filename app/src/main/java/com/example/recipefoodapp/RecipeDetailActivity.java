@@ -28,7 +28,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     TextView txtV_meal_name, txtV_meal_source, txtV_meal_sumary;
     ImageView imgV_meal_image;
-    RecyclerView recycler_meal_ingredients, recycler_meal_similar;
+    RecyclerView recycler_meal_ingredients, recycler_meal_similar
+            ,recycler_meal_instruction;
     IngredientsAdapter ingredientsAdapter;
     SimilarRecipeAdapter similarRecipeAdapter;
     int id;
@@ -59,6 +60,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         imgV_meal_image = findViewById(R.id.imgV_meal_image);
         recycler_meal_ingredients = findViewById(R.id.recycler_meal_ingredients);
         recycler_meal_similar = findViewById(R.id.recycler_meal_similar);
+        recycler_meal_instruction = findViewById(R.id.recycler_meal_instruction);
 
     }
 
