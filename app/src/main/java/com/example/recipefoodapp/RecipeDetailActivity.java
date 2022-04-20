@@ -14,10 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recipefoodapp.Adapters.IngredientsAdapter;
+import com.example.recipefoodapp.Adapters.InstructionAdapter;
 import com.example.recipefoodapp.Adapters.SimilarRecipeAdapter;
+import com.example.recipefoodapp.Listeners.InstructionsListener;
 import com.example.recipefoodapp.Listeners.RecipeClickListener;
 import com.example.recipefoodapp.Listeners.RecipesDetailsListener;
 import com.example.recipefoodapp.Listeners.SimilarRecipeListener;
+import com.example.recipefoodapp.Models.InstructionsResponse;
 import com.example.recipefoodapp.Models.RecipeDetailsResponse;
 import com.example.recipefoodapp.Models.SimilarRecipeResponse;
 import com.squareup.picasso.Picasso;
@@ -26,14 +29,16 @@ import java.util.List;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
+    int id;
     TextView txtV_meal_name, txtV_meal_source, txtV_meal_sumary;
     ImageView imgV_meal_image;
     RecyclerView recycler_meal_ingredients, recycler_meal_similar
             ,recycler_meal_instruction;
     IngredientsAdapter ingredientsAdapter;
     SimilarRecipeAdapter similarRecipeAdapter;
-    int id;
     LinearLayout loading;
+
+    InstructionAdapter instructionAdapter;
 
     RequestManager manager;
 
@@ -49,6 +54,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         manager = new RequestManager(this);
         manager.getRecipeDetails(RecipeDetailsListener, id);
         manager.getSimilarRecipes(similarRecipeListener, id);
+        manager.getInstructionsRecipe(instructionsListener, id);
         loading.setVisibility(View.VISIBLE);
     }
 
@@ -126,4 +132,24 @@ public class RecipeDetailActivity extends AppCompatActivity {
             .putExtra("id", id));
         }
     };
+
+    private final InstructionsListener instructionsListener =
+            new InstructionsListener() {
+                @Override
+                public void didFetch(List<InstructionsResponse> response, String message) {
+                    recycler_meal_instruction.setHasFixedSize(true);
+                    recycler_meal_instruction
+                            .setLayoutManager(new LinearLayoutManager(
+                                    RecipeDetailActivity.this, LinearLayoutManager.VERTICAL,
+                                    false));
+                    instructionAdapter = new InstructionAdapter(
+                            RecipeDetailActivity.this, response);
+                    recycler_meal_instruction.setAdapter(instructionAdapter);
+                }
+
+                @Override
+                public void didError(String message) {
+
+                }
+            };
 }
